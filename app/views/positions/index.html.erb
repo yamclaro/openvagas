@@ -1,0 +1,32 @@
+<h2>Minhas vagas</h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Vaga</th>
+      <th scope="col">Carreira</th>
+       <th scope="col">Local</th>
+       <th scope="col">Tipo de Contrato</th>
+       <th scope="col">Ações</th>
+       <th scope="col"></th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+   <%@positions.each do |position| %>
+    <tr>
+     <td><%=position.name%></td>
+      <td><%=position.career.name%></td>
+      <td><%=position.city%></td>
+      <td><%=position.position_type.name%></td>
+      <td>
+        <%= link_to "Edit", edit_position_path(position), class: 'btn btn-secondary'%>
+        <%= link_to "Destroy", position_path(position), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }, class: 'btn btn-danger'%>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

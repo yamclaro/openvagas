@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      position: Vaga
+    attributes:
+      position:
+        name: "Título"
+        career: "Função"
+        position_type: "Modo de Trabalho"
+        city: "Cidade"
+        state: "UF"
+        sumary: "Resumo"
+        description: "Descrição da vaga"
+        status: "Disponibilidade" 
+      # will translate User attribute "login" as "Handle"

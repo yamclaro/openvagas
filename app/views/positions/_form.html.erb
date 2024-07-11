@@ -1,0 +1,23 @@
+<%= simple_form_for @position do |f| %>
+  <%= f.input :name %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.association :career, includ_blank: false%>
+    </div>
+      <div class="col-md-6">
+    <%= f.association :position_type, includ_blank: false%>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <%= f.input :city %>
+    </div>
+      <div class="col-md-4">
+     <%= f.input :state %>
+    </div>
+  </div>
+  <%= f.input :sumary %>
+  <%= f.input :description %>
+  <%= f.input :status %>
+  <%= f.button :submit, class:"btn btn-primary" %>
+<% end %>

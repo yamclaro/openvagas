@@ -1,0 +1,7 @@
+[build]
+  command = "rvm install ruby-3.3.0 && rvm use ruby-3.3.0 && apt-get update && apt-get install -y libpq-dev && bundle exec rake assets:precompile"
+  publish = "public/"
+
+# Defina as variáveis de ambiente necessárias
+[build.environment]
+  PG_CONFIG_PATH = "/usr/bin/pg_config"  # Caminho para pg_config no Netlify

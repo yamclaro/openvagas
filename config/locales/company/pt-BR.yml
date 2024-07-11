@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      company: Empresa
+    attributes:
+      company:
+        name: "Nome"
+        url: "Site da empresa"
+        logo: "Logo da empresa"
+      # will translate User attribute "login" as "Handle"

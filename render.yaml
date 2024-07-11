@@ -1,0 +1,24 @@
+databases:
+  - name: openvagasdb
+    databaseName: openvagasdb
+    user: openvagasdb_user
+    password:
+      fromEnv: PG_PASSWORD
+    plan: free # ajuste conforme necessário
+
+services:
+  - type: web
+    name: openvagas
+    runtime: ruby
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec rails server -p $PORT -e $RAILS_ENV"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: openvagasdb
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: WEB_CONCURRENCY
+        value: 2

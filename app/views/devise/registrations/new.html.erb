@@ -1,0 +1,25 @@
+ <h1 class="h3 mb-3 fw-normal">Sign up</h1>
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-floating">
+    <%= f.email_field :email, class: "form-control", id: "floatingInput", placeholder: "name@example.com", autocomplete: "email", required: true, autofocus: true %>
+    <label for="floatingInput">Email address</label>
+  </div>
+  <div class="form-floating">
+    <%= f.password_field :password, class: "form-control", id: "floatingPassword", placeholder: "Password", autocomplete: "current-password", required: true %>
+    <label for="floatingPassword">New password</label>
+  </div>
+  <div class="form-floating">
+    <%= f.password_field :password_confirmation, class: "form-control", id: "floatingPassword", placeholder: "Password Confirmation", autocomplete: "current-password", required: true %>
+    <label for="floatingPassword">Password Confirmation</label>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Sign up", class: "btn btn-warning w-100 py-2", type: "submit" %>
+  </div>
+  <div>
+    <%= render "devise/shared/links" %>
+  </div>
+<% end %>
