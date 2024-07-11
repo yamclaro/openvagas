@@ -17,7 +17,8 @@
     </div>
   </div>
   <%= f.input :sumary %>
-  <%= f.input :description %>
+  <%= f.rich_text_area :description, input_html: { maxlength: 1500 }%>
+  <div id="character-count" style="color: #999;"></div>
   <%= f.input :status %>
   <%= f.button :submit, class:"btn btn-primary" %>
 <% end %>

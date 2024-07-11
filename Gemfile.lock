@@ -114,6 +114,7 @@ GEM
     drb (2.2.1)
     erubi (1.13.0)
     eventmachine (1.0.9.1)
+    ffi (1.17.0-x86_64-linux-gnu)
     figaro (1.2.0)
       thor (>= 0.14.0, < 2)
     globalid (1.2.1)
@@ -124,6 +125,9 @@ GEM
       tilt
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
+    image_processing (1.12.2)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     importmap-rails (2.0.1)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
@@ -159,6 +163,7 @@ GEM
     marcel (1.0.4)
     matrix (0.4.2)
     method_source (1.1.0)
+    mini_magick (4.13.2)
     mini_mime (1.1.5)
     minitest (5.24.1)
     msgpack (1.7.2)
@@ -302,6 +307,8 @@ GEM
       rubocop-performance
       rubocop-rails
     ruby-progressbar (1.13.0)
+    ruby-vips (2.2.1)
+      ffi (~> 1.12)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     selenium-webdriver (4.22.0)
@@ -392,6 +399,7 @@ DEPENDENCIES
   dotenv-rails (~> 3.1)
   figaro
   i18n
+  image_processing (~> 1.2)
   importmap-rails
   jbuilder
   mailcatcher
