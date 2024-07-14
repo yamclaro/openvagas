@@ -49,6 +49,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "brakeman", require: false
   gem "rubocop-rails-omakase", require: false
+  gem 'faker', :require => false
 end
 
 group :development do
@@ -62,3 +63,5 @@ group :test do
 end
 
 gem "dotenv-rails", "~> 3.1"
+
+
