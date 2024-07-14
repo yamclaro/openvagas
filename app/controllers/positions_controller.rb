@@ -25,6 +25,7 @@ class PositionsController < ApplicationController
   end
 
   def show
+    @position = Position.find(params[:id])  # Encontre a posição pelo ID
   end
 
   def update
