@@ -3,8 +3,6 @@
   <%= f.input :url %>
   <% if @company.new_record? || @company.logo.nil? %>
   <%= f.input :logo %>
-  <% else %>
-    <%= image_tag(@company.logo, class: "logo-company") %>
   <% end %>
   <br>
   <br>

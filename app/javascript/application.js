@@ -1,7 +1,4 @@
 
-import "@hotwired/turbo-rails"
-import "controllers"
-import * as bootstrap from "bootstrap"
 
 document.addEventListener('trix-change', function(event) {
     const editor = event.target.editor;
