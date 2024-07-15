@@ -1,11 +1,9 @@
 require 'faker'
 
-# Configure Faker to use the English locale
-Faker::Config.locale = 'en'
+Faker::Config.locale = 'pt-BR'
 
-# Use transactions for consistency
 ActiveRecord::Base.transaction do
-  # Clear existing data
+
   Applicant.delete_all
   Position.delete_all
   Career.delete_all
@@ -13,27 +11,23 @@ ActiveRecord::Base.transaction do
   PositionType.delete_all
   User.delete_all
 
-  # Create a single company
-  user = User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+  user = User.create!(email: 'admin@example.com', password: '102030', password_confirmation: '102030')
   
-  company_name = Faker::Company.name
+  company_name = "Desenvolvimeto"
   company_url = Faker::Internet.url
   company = Company.create!(name: company_name, url: company_url, user_id: user.id)
 
-  # Create position types
   position_types = 10.times.map do
     position_type_name = Faker::Job.field
     PositionType.create!(name: position_type_name)
   end
 
-  # Create 20 careers
   careers = 20.times.map do
     career_name = Faker::Job.field
     career_description = Faker::Lorem.sentence
     Career.create!(name: career_name, description: career_description)
   end
 
-  # Create 50 positions
   positions = 50.times.map do
     position_name = Faker::Job.title
     city = Faker::Address.city
@@ -43,7 +37,7 @@ ActiveRecord::Base.transaction do
       name: position_name,
       city: city,
       state: state,
-      summary: summary,
+      sumary: summary,
       company_id: company.id,
       status: [true, false].sample,
       career_id: careers.sample.id,
@@ -51,7 +45,6 @@ ActiveRecord::Base.transaction do
     )
   end
 
-  # Create 100 users and applicants with unique emails
   100.times do
     email = Faker::Internet.unique.email
     phone = Faker::PhoneNumber.phone_number
@@ -69,4 +62,4 @@ ActiveRecord::Base.transaction do
   end
 end
 
-puts "Data successfully inserted!"
+puts "Dados inseridos com sucesso!"
