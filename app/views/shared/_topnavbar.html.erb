@@ -6,13 +6,14 @@
     </button>
     <div class="collapse navbar-collapse w-auto " id="navbarNavDropdown">
       <ul class="navbar-nav col-md-11">
-         
-        <li class="nav-item">
-         <%= link_to "Minha empresa", dynamic_url_company, class: "nav-link" %>
-        </li>
-        <li class="nav-item d-flex input-group w-auto">
-         <%= link_to "Publicar vaga", new_position_path, class: "nav-link public-position" %>
-        </li>
+        <% if user_signed_in?  %>  
+          <li class="nav-item">
+            <%= link_to "Minha empresa", dynamic_url_company, class: "nav-link" %>
+          </li>
+          <li class="nav-item d-flex input-group w-auto">
+            <%= link_to "Publicar vaga", new_position_path, class: "nav-link public-position" %>
+          </li>
+        <%end%>
       </ul>
      <ul class="navbar-nav col-md-1">
       <% if user_signed_in? %> 
