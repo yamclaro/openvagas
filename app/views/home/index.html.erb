@@ -1,24 +1,19 @@
 <h1>Lista de Vagas</h1>
+<%= search_form_for @q, url: root_path, method: :get do |f| %>
+ <%= render 'search_positions', positions: @positions %>
+<% end %>
+<br>
+ <% if @positions.any? %>
+  <%= render 'positions_list', positions: @positions %>
+    <% else %>
+      <tr>
+        <td colspan="3">Nenhuma vaga encontrada.</td>
+      </tr>
+    <% end %>
+ 
 
-<div class="row">
-  <% @positions.each do |position| %>
-    <div class="col-md-12"> <!-- Três cards por linha -->
-      <div class="card mb-12">
-        <div class="card-body">
-          <h5 class="card-title"><%= position.name %></h5>
-          <div class="d-flex justify-content-between">
-          <p class="card-text"><%= position.company.name %></p> <!-- Altere conforme necessário -->
-          <p class="card-text"><%= position.career.name %></p> 
-          <p class="card-text"><%= position.position_type.name %></p> 
-          </div>
-          <div >
-            <%= link_to 'Cotinuar Lendo', position_path(position), class: 'btn btn-primary' %>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div>
 <div class="pag-bar mt-5 pt-5">
   <%== pagy_bootstrap_nav(@pagy) %>
 </div>
+
+

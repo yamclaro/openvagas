@@ -67,3 +67,5 @@ gem "dotenv-rails", "~> 3.1"
 
 
 gem "pagy", "~> 8.6"
+
+gem "ransack", "~> 4.2"

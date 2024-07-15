@@ -1,0 +1,23 @@
+<div class="row">
+  <% @positions.each do |position| %>
+    <div class="col-md-12"> <!-- Três cards por linha -->
+      <div class="card mb-12">
+        <div class="card-body">
+           <h5 class="display-6"><%= position.name    %></h5>
+          <div class="d-flex justify-content-between row">
+          <p class="col-md-2">Empresa</p>
+          <p class="card-text col-md-10"><%= position.company.name %></p> 
+          <p class="col-md-2">Carreira da vaga</p><!-- Altere conforme necessário -->
+         <p class="card-text col-md-10"><%= position.career.name %></p> 
+          <p class="col-md-2">Tipo Jornada da vaga</p>
+         <p class="card-text col-md-10"><%= position.position_type.name %></p>
+           
+
+          </div>
+          <p class="lead my-2"><%= position.sumary%></p>
+           <p><%= link_to 'Continue lendo...', position, class: 'text-dark fw-bold' %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
