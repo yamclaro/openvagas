@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
   resources :careers
   resources :applicants, only: [ :index, :new, :create ]
   resources :positions

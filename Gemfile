@@ -71,3 +71,5 @@ gem "pagy", "~> 8.6"
 gem "ransack", "~> 4.2"
 
 gem 'i18n'
+
+gem "sidekiq", "~> 7.3"

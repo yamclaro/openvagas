@@ -15,22 +15,32 @@ WORKDIR /rails
 
 # Install base packages
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libjemalloc2 libvips postgresql-client && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+    apt-get install --no-install-recommends -y \
+        curl \
+        libjemalloc2 \
+        libvips \
+        postgresql-client && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 # Set production environment
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development"
+    BUNDLE_WITHOUT="development test"
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
 # Install packages needed to build gems and node modules
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libpq-dev node-gyp pkg-config python-is-python3 && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+    apt-get install --no-install-recommends -y \
+        build-essential \
+        git \
+        libpq-dev \
+        node-gyp \
+        pkg-config \
+        python-is-python3 && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 # Install JavaScript dependencies
 ARG NODE_VERSION=20.14.0
@@ -43,7 +53,8 @@ RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
-RUN bundle install && \
+RUN bundle config --local set path 'vendor/bundle' && \
+    bundle install --jobs 4 --retry 3 && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     bundle exec bootsnap precompile --gemfile
 
@@ -60,9 +71,7 @@ RUN bundle exec bootsnap precompile app/ lib/
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
-
 RUN rm -rf node_modules
-
 
 # Final stage for app image
 FROM base
