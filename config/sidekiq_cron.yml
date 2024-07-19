@@ -1,0 +1,7 @@
+# config/sidekiq_cron.yml
+
+password_reset_job:
+  cron: "0 0 * * *"  # Executa diariamente à meia-noite
+  class: "PasswordResetJob"
+  args:
+    - <user_id>  # substitua por um valor real se necessário

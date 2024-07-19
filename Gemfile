@@ -73,3 +73,5 @@ gem "ransack", "~> 4.2"
 gem "i18n"
 
 gem "sidekiq"
+gem "sidekiq-cron"
+
