@@ -36,12 +36,13 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - .:/app
+      - .:/rails
       - gem_cache:/usr/local/bundle/gems
-      - node_modules:/app/node_modules
+      - node_modules:/rails/node_modules
     env_file: .env
     environment:
       RAILS_ENV: development
+    command: ./bin/rails server -b 0.0.0.0
 
   redis:
     image: redis:latest
@@ -56,13 +57,13 @@ services:
       - db
       - redis
     volumes:
-      - .:/app
+      - .:/rails
       - gem_cache:/usr/local/bundle/gems
-      - node_modules:/app/node_modules
+      - node_modules:/rails/node_modules
     env_file: .env
     environment:
       RAILS_ENV: development
-    entrypoint: ./wait-for-it.sh db:5432 -- ./entrypoints/sidekiq-entrypoint.sh
+    entrypoint: ./wait-for-it.sh db:5432 -- bundle exec sidekiq
 
 volumes:
   gem_cache:
