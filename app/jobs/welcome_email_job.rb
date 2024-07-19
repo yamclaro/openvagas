@@ -1,6 +1,6 @@
 class WelcomeEmailJob
   include Sidekiq::Worker
-  sidekiq_options queue: 'mailers'
+  sidekiq_options queue: "mailers"
 
   def perform(user_id)
     user = User.find(user_id)

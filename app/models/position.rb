@@ -5,5 +5,4 @@ class Position < ApplicationRecord
 
   has_rich_text :description
 
-  validates :name, :career, :position_type, :city, :state,  presence: true
 end

@@ -47,6 +47,8 @@ services:
   redis:
     image: redis:latest
     restart: always
+    ports:
+      - "6379:6379"
 
   sidekiq:
     build:
@@ -64,6 +66,17 @@ services:
     environment:
       RAILS_ENV: development
     entrypoint: ./wait-for-it.sh db:5432 -- bundle exec sidekiq
+
+  redisinsight:
+    image: redislabs/redisinsight:1.14.0
+    restart: always
+    ports:
+      - "8001:8001"
+    depends_on:
+      - redis
+    environment:
+      REDISINSIGHT_PORT: 8001
+      REDISINSIGHT_PASSWORD: example_password
 
 volumes:
   gem_cache:
